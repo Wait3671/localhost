@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <script>
+             //统计函数使用次数的功能
+             let counter = 0
+             function add() {
+                 // console.log(counter)
+                 counter ++
+                 return counter
+             }
+             console.log(add())
+             console.log(add())
+             console.log(add())
+             console.log(add())
+             counter = 10
+             console.log(add())
+             
+             //变形 无效
+             function add1() {
+                 let counter = 0
+                 counter ++
+                 return counter
+             }
+             
+             console.log(add1())
+             console.log(add1())
+             console.log(add1())
+             console.log(add1())
+             
+             //变形
+             function add2() {
+                 let counter = 0
+                 function plus() {
+                     counter ++
+                 }
+                 plus()
+                 return counter
+             }
+             
+             console.log(add2())
+             console.log(add2())
+             console.log(add2())
+             
+             //变形 只让变量初始化一次 并且 还能实现保护
+             function add3() {
+                 let counter = 0
+                 return function () {
+                     return counter ++
+                 }
+             }
+             let a = add3()
+             console.log(a())
+             console.log(a())
+             console.log(a())
+             
+             //变形 自调用函数 闭包函数
+             const add4 = (function () {
+                 let counter = 0
+                 return function () {
+                     return ++ counter
+                 }
+             })()
+             console.log(add4)
+             console.log(add4())
+             console.log(add4())
+             console.log(add4())
+             counter = 10
+             console.log(add4())
+             console.log(add4())
+        
+        </script>
+    </body>
+</html>
